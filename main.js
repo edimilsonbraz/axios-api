@@ -4,8 +4,13 @@ const newUser = {
   avatar: "http://lorempixel.com/400/200/",
   city: "Brasília"
 }
+const userUpdate = {
+  name: "Mayk Brito da Silva",
+  avatar: "http://lorempixel.com/400/200/",
+  city: "Paraná"
+}
 
-// Trás os dados da API
+// Pega os dados da API
 function getUser() {
   axios.get(url)
   .then(response => {
@@ -14,10 +19,10 @@ function getUser() {
   })
   .catch(error => console.log(error))
 }
-
 getUser()
 
-// Cria os dados na API
+
+// Envia dados para API
 function addNewUser() {
   axios.post(url, newUser)
   .then(response => {
@@ -25,5 +30,37 @@ function addNewUser() {
   })
   .catch(error => console.log(error))
 }
+//addNewUser()   
 
-addNewUser()
+
+//Modificando dados da API
+function updateUser() {
+  axios.put(`${url}/4`, userUpdate) 
+  .then(response => {
+    alert(JSON.stringify(response.data))
+  })
+  .catch(error => console.log(error))
+}
+//updateUser()
+
+
+//Deletando dados da API
+function deleteUser() {
+  axios.delete(`${url}/3`)
+  .then(response => {
+    alert(JSON.stringify(response.data))
+  })
+  .catch(error => console.log(error))
+}
+//deleteUser()
+
+
+function getOneUser() {
+  axios.get(`${url}/2`)
+  .then(response => {
+    const data = response.data
+    renderResults.textContent = JSON.stringify(data)
+  })
+  .catch(error => console.log(error)) 
+}
+getOneUser()
